@@ -13,9 +13,17 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users'); 
+            #* Es lo mismo a : "$table->foreign('user_id')->constrained();"
+
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('body');
+
             $table->timestamps();
         });
     }
