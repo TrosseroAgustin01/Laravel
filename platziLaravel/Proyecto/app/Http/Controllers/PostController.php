@@ -18,4 +18,16 @@ class PostController extends Controller
         
         return back(); // estas funcion nos retorna de manera automatica a la vista anterior;
     }
+
+    public function create(){
+        return view('posts.create',[
+            'posts' => Post::latest()->paginate(),
+        ]);
+    }
+
+    public function edit(Post $post){
+        return view('posts.edit',[
+            'post' => $post,
+        ]);
+    }
 }
